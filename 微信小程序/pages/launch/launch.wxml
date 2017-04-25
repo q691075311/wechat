@@ -1,0 +1,5 @@
+
+<!--pages/launch/lunach.wxml-->
+<view class="launch">
+  <image class="launch-image" src="/pages/image/S1@2x.png"></image>
+</view>
