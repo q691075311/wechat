@@ -1,7 +1,7 @@
 /**index.wxss**/
 
 .container {
-  padding: 0;
+
 }
 
 .userinfo {
@@ -22,14 +22,60 @@
 }
 
 .usermotto {
+  display: flex;
   margin-top: 50px;
+  margin-left: 25px;
+  margin-right: 25px;
+  height: 48px;
+  border-radius: 24px;
+  border: 1px solid #cd302c;
+}
+
+.pswview {
+  display: flex;
+  margin-top: 24px;
+  margin-left: 25px;
+  margin-right: 25px;
+  height: 48px;
+  border-radius: 24px;
+  border: 1px solid #cd302c;
 }
 
 .usermotto-phone {
-  text-align: left;
   font-size: 16px;
-  color: #4a4a4a;
-  letter-spacing: 0;
-  border-color: red;
-  border-width: 1px;
+  height: 48px;
+  margin: 0 0 0 5px;
+}
+
+.usermotto-head {
+  height: 24px;
+  width: 24px;
+  margin-left: 20px;
+  margin-top: 12px;
+  margin-bottom: 0px;
+}
+
+.usermotto-psw {
+  font-size: 16px;
+  height: 48px;
+  margin: 0 0 0 5px;
+}
+
+.loginbtn {
+  background-color: #cd302c;
+  height: 48px;
+  font-size: 16px;
+  margin: 24px 24px 0px;
+  text-align: center;
+  color: white;
+  border-radius: 24px;
+  padding-top: 5px;
+}
+
+.typebtn {
+  padding-top: 1px;
+  font-size: 16px;
+  color: #cd302c;
+  width: 200px;
+  margin-right: 0px;
 }

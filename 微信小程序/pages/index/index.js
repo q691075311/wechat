@@ -6,6 +6,11 @@ Page({
     motto: 'Hello World',
     userInfo: {}
   },
+  login: function() {
+    wx.navigateTo({
+      url: '../logs/logs'
+    })
+  },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
