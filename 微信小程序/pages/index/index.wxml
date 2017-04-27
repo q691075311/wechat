@@ -1,21 +1,19 @@
 
 <!--index.wxml-->
 <view class="container">
-  <view bindtap="bindViewTap" class="userinfo">
+  <view class="userinfo">
     <image class="userinfo-avatar" src="/pages/image/logo-120@2x.png" background-size="cover"></image>
-
-    <!--<text class="userinfo-nickname">{{userInfo.nickName}}</text>-->
   </view>
-  <view class="usermotto">
-
-    <!--<text class="user-motto">{{motto}}</text>-->
-    <image class="usermotto-head" src="/pages/image/profile.png"></image>
-    <input class="usermotto-phone" placeholder="请输入手机号" />
+  <view class="usermotto" style="border:{{width}} solid {{usercolor}}">
+    <image class="usermotto-head" src="{{userimage}}"></image>
+    <input name="user" class="usermotto-phone" placeholder="请输入手机号" bindfocus="useredit" bindblur="endedit" bindinput="phoneinput"/>
   </view>
-  <view class="pswview">
-    <image class="usermotto-head" src="/pages/image/password.png"></image>
-    <input class="usermotto-psw" password="true" placeholder="请输入密码" />
+  <view class="pswview" style="border: {{width}} solid {{pswcolor}}">
+    <image class="usermotto-head" src="{{pswimage}}"></image>
+    <input name="pasw" class="usermotto-psw" password="true" placeholder="请输入密码" bindfocus="pswedit" bindblur="endedit" bindinput="pswinput"/>
   </view>
-  <button bindtap="login" class="loginbtn">登录</button>
-  <button class="typebtn">有账号？返回登录</button>
+  <button bindtap="{{lor}}" class="loginbtn" >{{btntitle}}</button>
+  <view class="typebtn" bindtap="{{loginorreg}}">{{qietype}}</view>
+  <view>{{userphone}}</view>
+  <view>{{userpsw}}</view>
 </view>

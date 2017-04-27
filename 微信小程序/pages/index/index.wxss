@@ -1,7 +1,8 @@
 /**index.wxss**/
 
 .container {
-
+  padding: 0;
+  margin: 0;
 }
 
 .userinfo {
@@ -28,7 +29,6 @@
   margin-right: 25px;
   height: 48px;
   border-radius: 24px;
-  border: 1px solid #cd302c;
 }
 
 .pswview {
@@ -38,10 +38,10 @@
   margin-right: 25px;
   height: 48px;
   border-radius: 24px;
-  border: 1px solid #cd302c;
 }
 
 .usermotto-phone {
+  width: 80%;
   font-size: 16px;
   height: 48px;
   margin: 0 0 0 5px;
@@ -56,6 +56,7 @@
 }
 
 .usermotto-psw {
+  width: 80%;
   font-size: 16px;
   height: 48px;
   margin: 0 0 0 5px;
@@ -73,9 +74,12 @@
 }
 
 .typebtn {
-  padding-top: 1px;
+  width: 150px;
+  margin-top: 16px;
+  margin-right: 25px;
+  /*background-color: coral;*/
   font-size: 16px;
   color: #cd302c;
-  width: 200px;
-  margin-right: 0px;
+  text-align: right;
+  float: right;
 }
