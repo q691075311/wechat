@@ -11,26 +11,39 @@ Page({
     pswimage: '/pages/image/password.png',
     btntitle: '登录',
     loginorreg: 'login',
-    qietype: '有账号？返回登录',
+    qietype: '点击注册',
     lor: 'loginclick',
-    userphone: '',
-    userpsw: '',
+    userphone: '11111111111',
+    userpsw: '111111',
+    headImageURL: '/pages/image/logo-120@2x.png',
     userInfo: {}
   },
   //切换成注册状态
   login: function () {
+    wx.setNavigationBarTitle({
+      title: '账号注册',
+      success: function (res) {
+        // success
+      }
+    })
     this.setData({
       loginorreg: 'reg',
-      qietype: '点击注册',
+      qietype: '有账号？返回登录',
       btntitle: '注册',
       lor: 'regclick',
     })
   },
   //切换成登录状态
   reg: function () {
+    wx.setNavigationBarTitle({
+      title: '账号登录',
+      success: function (res) {
+        // success
+      }
+    })
     this.setData({
       loginorreg: 'login',
-      qietype: '有账号？返回登录',
+      qietype: '点击注册',
       btntitle: '登录',
       lor: 'loginclick',
     })
@@ -55,22 +68,22 @@ Page({
       title: '加载中',
     })
     //校验用户名和密码
-    // if (this.data.userphone.length != 11) {
-    //   wx.showToast({
-    //     title: '请输入11位手机号！',
-    //     icon: 'fail',
-    //     duration: 2000
-    //   })
-    //   return
-    // }
-    // if (this.data.userpsw.length < 6 || this.data.userpsw.length > 18) {
-    //   wx.showToast({
-    //     title: '请输入6-18位密码！',
-    //     icon: 'fail',
-    //     duration: 2000
-    //   })
-    //   return
-    // }
+    if (this.data.userphone.length != 11) {
+      wx.showToast({
+        title: '请输入11位手机号！',
+        icon: 'fail',
+        duration: 2000
+      })
+      return
+    }
+    if (this.data.userpsw.length < 6 || this.data.userpsw.length > 18) {
+      wx.showToast({
+        title: '请输入6-18位密码！',
+        icon: 'fail',
+        duration: 2000
+      })
+      return
+    }
     //登录请求
     wx.request({
       url: 'http://116.62.7.43/d/phone/login',
@@ -85,6 +98,15 @@ Page({
       },
       success: function (res) {
         wx.hideLoading()
+        console.log(res)
+        var isSelectInterest = res.data.attribute.isSelectInterest;
+        var token = res.data.attribute.token;
+        var uid = res.data.attribute.uid;
+        try {
+          wx.setStorageSync('uid', uid)
+          wx.setStorageSync('token', token)
+        } catch (e) {
+        }
         // success
         //判断返回状态码
         if (res.data.statusCode != 0) {
@@ -99,11 +121,49 @@ Page({
             icon: 'success',
             duration: 2000
           })
-          //跳转首页
-          wx.navigateTo({
-            url: "../logs/logs",
+          if (isSelectInterest = false) {
+            //跳转首页
+            wx.navigateTo({
+              url: "../logs/logs",
+              success: function (res) {
+                // success
+              },
+              fail: function (res) {
+                // fail
+              },
+              complete: function (res) {
+                // complete
+              }
+            })
+          } else {
+            //跳转兴趣爱好
+            wx.navigateTo({
+              url: '../Interest/Interest',
+              success: function(res){
+                // success
+              },
+              fail: function(res) {
+                // fail
+              },
+              complete: function(res) {
+                // complete
+              }
+            })
+          }
+          wx.request({
+            url: 'http://116.62.7.43/d/phone/user/detail',
+            data: {},
+            method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            header: { 'content-type': 'application/json', 'token': token, 'uid': uid }, // 设置请求的 header
             success: function (res) {
+              console.log(res.data)
               // success
+              var headImage = res.data.attribute.item.headImage
+              try {
+                wx.setStorageSync('headImage', headImage)
+              } catch (e) {
+              }
+              console.log(headImageURL)
             },
             fail: function (res) {
               // fail
@@ -126,7 +186,7 @@ Page({
   },
   //注册btn
   regclick: function () {
-    
+    var that = this
     //校验用户名和密码
     if (this.data.userphone.length != 11) {
       wx.showToast({
@@ -144,20 +204,6 @@ Page({
       })
       return
     }
-    //获取系统信息
-    // wx.getSystemInfo({
-    //   success: function (res) {
-    //     // success
-    //     console.log(res.model)
-    //     console.log(res.pixelRatio)
-    //     console.log(res.windowWidth)
-    //     console.log(res.windowHeight)
-    //     console.log(res.language)
-    //     console.log(res.version)
-    //     console.log(res.platform)
-    //     console.log(res.system)
-    //   }
-    // })
     wx.request({
       url: 'http://116.62.7.43/d/phone/register',
       data: {
@@ -170,12 +216,12 @@ Page({
         'content-type': 'application/json'
       }, // 设置请求的 header
       success: function (res) {
-        this.setData({
-            loginorreg: 'login',
-            qietype: '有账号？返回登录',
-            btntitle: '登录',
-            lor: 'loginclick',
-          })
+        that.setData({
+          loginorreg: 'login',
+          qietype: '有账号？返回登录',
+          btntitle: '登录',
+          lor: 'loginclick',
+        })
         // success
         console.log(res)
         //判断返回状态码
@@ -191,7 +237,7 @@ Page({
             icon: 'success',
             duration: 2000
           })
-          
+
         }
       },
       fail: function (res) {
@@ -233,10 +279,12 @@ Page({
   onLoad: function () {
     console.log('onLoad')
     var that = this
+    var headImageURL = wx.getStorageSync('headImage')
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据
       that.setData({
+        headImageURL : 'http://116.62.7.43/'+headImageURL,
         userInfo: userInfo
       })
     })

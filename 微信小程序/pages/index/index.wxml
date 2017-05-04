@@ -2,7 +2,7 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
-    <image class="userinfo-avatar" src="/pages/image/logo-120@2x.png" background-size="cover"></image>
+    <image class="userinfo-avatar" src="{{headImageURL}}" background-size="cover"></image>
   </view>
   <view class="usermotto" style="border:{{width}} solid {{usercolor}}">
     <image class="usermotto-head" src="{{userimage}}"></image>
