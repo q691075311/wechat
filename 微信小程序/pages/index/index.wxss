@@ -56,6 +56,7 @@
 }
 
 .usermotto-psw {
+  /*background-color: coral;*/
   width: 80%;
   font-size: 16px;
   height: 48px;
@@ -77,7 +78,6 @@
   width: 150px;
   margin-top: 16px;
   margin-right: 25px;
-  /*background-color: coral;*/
   font-size: 16px;
   color: #cd302c;
   text-align: right;

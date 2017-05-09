@@ -1,0 +1,43 @@
+/* pages/interest/interest.wxss */
+
+.interest {
+  display: flex;
+  flex-direction: column;
+}
+.blockcell{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-left: 20px;
+    width: 100px;
+    height: 62px;
+    font-size: 18px;
+    color: #4A4A4A;
+    line-height: 62px;
+    background-color: gold;
+    
+}
+.line{
+    height: 1px;
+    width: 100%;
+    margin-bottom: 0px;
+    background-color: rgb(238, 238, 238);
+}
+.iconimage{
+    background-color: coral;
+    width: 54px;
+    height: 58px;
+    margin-bottom: 2px;
+    margin-top: 3px
+}
+.rigthimage{
+   
+    width: 38px;
+    height: 38px;
+    margin-right: 14px;
+    margin-top: 12px;
+}
+.block{
+    display: flex;
+    flex-direction: row;
+}

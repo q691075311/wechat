@@ -1,41 +1,65 @@
+// pages/interest/interest.js
 Page({
-  data:{
-    String1
+  data: {
+    rightimage: 'rightcopy.png',
+    arr: [],
   },
-  onLoad:function(options){
-    // 生命周期函数--监听页面加载
-    String2
+  onLoad: function (options) {
+    // 页面初始化 options为页面跳转所带来的参数
+    var that = this
+    var token = wx.getStorageSync('token')
+    var uid = wx.getStorageSync('uid')
+    wx.request({
+      url: 'http://116.62.7.43/d/phone/interestInquirer/list',
+      data: {},
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      header: {
+        "token": token,
+        "uid": uid
+      }, // 设置请求的 header
+      success: function (res) {
+        // success
+        // console.log(res.data.attribute.list)
+        var listarr = res.data.attribute.list;
+        console.log(listarr)
+        that.setData({
+          arr: listarr,
+        })
+      },
+      fail: function (res) {
+        // fail
+      },
+      complete: function (res) {
+        // complete
+      }
+    })
   },
-  onReady:function(){
-    // 生命周期函数--监听页面初次渲染完成
-    String3
-  },
-  onShow:function(){
-    // 生命周期函数--监听页面显示
-    String4
-  },
-  onHide:function(){
-    // 生命周期函数--监听页面隐藏
-    String5
-  },
-  onUnload:function(){
-    // 生命周期函数--监听页面卸载
-    String6
-  },
-  onPullDownRefresh: function() {
-    // 页面相关事件处理函数--监听用户下拉动作
-    String7
-  },
-  onReachBottom: function() {
-    // 页面上拉触底事件的处理函数
-    String8
-  },
-  onShareAppMessage: function() {
-    // 用户点击右上角分享
-    return {
-      title: 'title', // 分享标题
-      desc: 'desc', // 分享描述
-      path: 'path' // 分享路径
+  selecter: function (e) {
+    console.log(e)
+    var that = this;
+    console.log('222222')
+    if (that.data.rightimage == 'rightcopy.png') {
+      console.log('3333333')
+      that.setData({
+        rightimage: 'right.png'
+      })
+    }else{
+      console.log('3333333')
+      that.setData({
+        rightimage: 'rightcopy.png'
+      })
     }
+  },
+  onReady: function () {
+    // 页面渲染完成
+  },
+  onShow: function () {
+    // 页面显示
+  },
+  onHide: function () {
+    // 页面隐藏
+  },
+  onUnload: function () {
+    // 页面关闭
   }
 })

@@ -1,0 +1,12 @@
+
+<!--pages/interest/interest.wxml-->
+<view class="interest">
+  <view style="height:1px;background-color: rgb(238, 238, 238);"></view>
+  <view class="block" wx:for="{{arr}}" wx:for-item="type" wx:for-index="index">
+    <image class="iconimage" src="http://116.62.7.43/{{type.pictureAddress}}"></image>
+    <view class="blockcell">
+      {{type.interestName}}
+    </view>
+    <image class="rigthimage" bindtap="selecter" src="/pages/image/{{rightimage}}"></image>
+  </view>
+</view>
