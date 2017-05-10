@@ -1,12 +1,13 @@
-
 <!--pages/interest/interest.wxml-->
 <view class="interest">
   <view style="height:1px;background-color: rgb(238, 238, 238);"></view>
-  <view class="block" wx:for="{{arr}}" wx:for-item="type" wx:for-index="index">
-    <image class="iconimage" src="http://116.62.7.43/{{type.pictureAddress}}"></image>
-    <view class="blockcell">
-      {{type.interestName}}
+  <block wx:for="{{arr}}" wx:for-item="type" wx:for-index="index" wx:key="item.id">
+    <view class="block">
+      <image class="iconimage" src="http://116.62.7.43/{{type.pictureAddress}}"></image>
+      <view id="{{index}}" bindtap="selecter" class="blockcell">{{type.interestName}}</view>
+      <image id="{{index}}" class="rigthimage" bindtap="selecter" src="/pages/image/{{selecterIndex[index]=='1'? 'right.png':'rightcopy.png'}}"></image>
     </view>
-    <image class="rigthimage" bindtap="selecter" src="/pages/image/{{rightimage}}"></image>
-  </view>
+    <view class="line"></view>
+  </block>
+  <button class="btntype" bindtap="next">下一步</button>
 </view>

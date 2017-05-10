@@ -1,54 +1,63 @@
 // pages/interest/interest.js
+var netWork = require('../../utils/request.js')
+var token = wx.getStorageSync('token')
+var uid = wx.getStorageSync('uid')
 Page({
   data: {
     rightimage: 'rightcopy.png',
     arr: [],
+    selecterIndex: [],
+    selecterimage: null,
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     var that = this
-    var token = wx.getStorageSync('token')
-    var uid = wx.getStorageSync('uid')
-    wx.request({
-      url: 'http://116.62.7.43/d/phone/interestInquirer/list',
-      data: {},
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: {
-        "token": token,
-        "uid": uid
-      }, // 设置请求的 header
-      success: function (res) {
-        // success
-        // console.log(res.data.attribute.list)
+
+    netWork.requestNetWork('/phone/interestInquirer/list', {}, { "token": token, "uid": uid }, 'POST',
+      function success(res) {
         var listarr = res.data.attribute.list;
-        console.log(listarr)
+        var index = new Array()
+        for (var i = 0; i < listarr.length; i++) {
+          index[i] = '0';
+        }
         that.setData({
           arr: listarr,
+          selecterIndex: index,
         })
       },
-      fail: function (res) {
-        // fail
+      function fail(res) {
+
       },
-      complete: function (res) {
-        // complete
+      function complete(res) {
+
       }
+    )
+  },
+  // 选中的按钮
+  selecter: function (e) {
+    // console.log(e)
+    var index = e.target.id
+    var typeStr = this.data.selecterIndex[index] == '1' ? '0' : '1'
+    this.data.selecterIndex[index] = typeStr
+    this.setData({
+      selecterIndex: this.data.selecterIndex
     })
   },
-  selecter: function (e) {
-    console.log(e)
-    var that = this;
-    console.log('222222')
-    if (that.data.rightimage == 'rightcopy.png') {
-      console.log('3333333')
-      that.setData({
-        rightimage: 'right.png'
-      })
-    }else{
-      console.log('3333333')
-      that.setData({
-        rightimage: 'rightcopy.png'
-      })
+  // 下一步
+  next: function () {
+    var seleStr = ''
+    for (var i = 0; i < this.data.selecterIndex.length; i++) {
+      if (this.data.selecterIndex[i] == '1') {
+        var str = this.data.arr[i].id
+        if (seleStr.length == 0) {
+          seleStr = str
+        } else {
+          seleStr = seleStr + ',' + str
+        }
+      }
     }
+    console.log(seleStr)
+    saveUserInterestRequest(seleStr)
   },
   onReady: function () {
     // 页面渲染完成
@@ -63,3 +72,17 @@ Page({
     // 页面关闭
   }
 })
+
+function saveUserInterestRequest(e) {
+  netWork.requestNetWork('/phone/interestInquirer/saveUserInterest', { "interest": e }, { "token": token, "uid": uid }, 'POST',
+    function success(res) {
+      console.log('保存用户兴趣爱好成功！！！！')
+    },
+    function fail(res) {
+
+    },
+    function complete(res) {
+
+    }
+  )
+}

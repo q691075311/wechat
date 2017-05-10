@@ -1,7 +1,7 @@
 var baseURL = 'http://116.62.7.43/d'
 
 function requestNetWork(url, data, head, method, success, fail, complete) {
-  console.log('5555555!!!!!!')
+  console.log('请求开始!!!!!!')
   console.log(data)
   console.log(head)
   wx.request({

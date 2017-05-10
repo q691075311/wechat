@@ -14,7 +14,7 @@ Page({
     loginorreg: 'login',
     qietype: '点击注册',
     lor: 'loginclick',
-    userphone: '11111111111',
+    userphone: '33333333333',
     userpsw: '111111',
     headImageURL: '/pages/image/logo-120@2x.png',
     userInfo: {}
@@ -99,7 +99,7 @@ Page({
         } catch (e) {
         }
         showToastfun.falseShow('登录成功！', '')
-        if (isSelectInterest = false) {
+        if (isSelectInterest == true) {
           //跳转首页
           pushToController('../logs/logs')
         } else {
@@ -123,6 +123,9 @@ Page({
             }
           },
           function fail(res) {
+
+          },
+          function complete(res){
 
           }
         )
@@ -196,9 +199,10 @@ Page({
     console.log('onLoad')
     var that = this
     var headImage = 'http://116.62.7.43/' + wx.getStorageSync('headImage')
-    if (headImage.length <= 0) {
+    if (wx.getStorageSync('headImage').length <= 0) {
       headImage = '/pages/image/profilecopy.png'
     }
+    console.log(headImage)
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据
