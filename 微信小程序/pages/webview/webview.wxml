@@ -1,0 +1,7 @@
+<!--pages/webview/webview.wxml-->
+<!--<text>pages/webview/webview.wxml</text>-->
+
+<import src="../../wxParse/wxParse.wxml" />
+<view class="wxParse">
+  <template is="wxParse" data="{{htmldata}}" />
+</view>

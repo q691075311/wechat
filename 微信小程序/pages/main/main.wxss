@@ -1,1 +1,17 @@
 /* pages/main/main.wxss */
+
+.swiper {
+  width: 100%;
+  height: 180px;
+  background-color: chartreuse;
+}
+
+.weiper-item {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-image {
+  width: 100%;
+  height: 100%;
+}

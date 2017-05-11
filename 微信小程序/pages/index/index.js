@@ -37,8 +37,9 @@ Page({
   },
   //切换成登录状态
   reg: function () {
-    var headImage = 'http://116.62.7.43/' + wx.getStorageSync('headImage')
-    if (headImage.length <= 0) {
+    var strongHead = wx.getStorageSync('headImage')
+    var headImage = 'http://116.62.7.43/' + strongHead
+    if (strongHead.length <= 0) {
       headImage = '/pages/image/profilecopy.png'
     }
     wx.setNavigationBarTitle({
@@ -85,7 +86,7 @@ Page({
     }
     //登录请求
     var data = { "username": this.data.userphone, "password": this.data.userpsw }
-    netWork.requestNetWork('/phone/login', data, { 'content-type': 'application/json' }, 'POST',
+    netWork.requestNetWork('http://116.62.7.43/d/phone/login', data, { 'content-type': 'application/json' }, 'POST',
       function success(res) {
         console.log(res.data);
         wx.hideLoading();
@@ -101,14 +102,14 @@ Page({
         showToastfun.falseShow('登录成功！', '')
         if (isSelectInterest == true) {
           //跳转首页
-          pushToController('../logs/logs')
+          pushToController('../main/main')
         } else {
           //跳转兴趣爱好
           pushToController('../interest/interest')
         }
         // 获取个人信息请求
         var headInfo = { 'content-type': 'application/json', 'token': token, 'uid': uid }
-        netWork.requestNetWork('/phone/user/detail', {}, headInfo, 'POST',
+        netWork.requestNetWork('http://116.62.7.43/d/phone/user/detail', {}, headInfo, 'POST',
           function success(res) {
             wx.hideLoading()
             var headImage = res.data.attribute.item.headImage
@@ -157,11 +158,11 @@ Page({
       "regDevice": "ios"
     }
     console.log(regData)
-    netWork.requestNetWork('/phone/register', regData, { 'content-type': 'application/json' }, 'POST',
+    netWork.requestNetWork('http://116.62.7.43/d/phone/register', regData, { 'content-type': 'application/json' }, 'POST',
       function success(res) {
         that.setData({
           loginorreg: 'login',
-          qietype: '有账号？返回登录',
+          qietype: '点击注册',
           btntitle: '登录',
           lor: 'loginclick',
         })

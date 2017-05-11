@@ -3,12 +3,14 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/interest/interest",
-    "pages/main/main"
+    "pages/main/main",
+    "pages/webview/webview"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "黑疯",
     "navigationBarTextStyle":"black"
-  }
+  },
+  "debug":true
 }

@@ -1,2 +1,8 @@
 <!--pages/main/main.wxml-->
-<text>pages/main/main.wxml</text>
+<swiper class="swiper" indicator-dots="true" autoplay="true" duration="500" interval="2000" circular="true">
+  <block wx:for="{{arr}}" wx:for-item="item" wx:for-index="index">
+    <swiper-item class="weiper-item" data-link="{{item.promotionalWapLink}}" bindtap="imageclock">
+    <image class="swiper-image" src="http://116.62.7.43{{item.promotionalPicturePath}}"></image>
+    </swiper-item>
+  </block>
+</swiper>

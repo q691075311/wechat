@@ -1,7 +1,6 @@
 // pages/interest/interest.js
 var netWork = require('../../utils/request.js')
-var token = wx.getStorageSync('token')
-var uid = wx.getStorageSync('uid')
+
 Page({
   data: {
     rightimage: 'rightcopy.png',
@@ -12,10 +11,11 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     var that = this
-
-    netWork.requestNetWork('/phone/interestInquirer/list', {}, { "token": token, "uid": uid }, 'POST',
+    var token = wx.getStorageSync('token')
+    var uid = wx.getStorageSync('uid')
+    netWork.requestNetWork('http://116.62.7.43/d/phone/interestInquirer/list', {}, { "token": token, "uid": uid }, 'POST',
       function success(res) {
-        var listarr = res.data.attribute.list;
+        var listarr = res.data.attribute.list
         var index = new Array()
         for (var i = 0; i < listarr.length; i++) {
           index[i] = '0';
@@ -57,6 +57,12 @@ Page({
       }
     }
     console.log(seleStr)
+    if (seleStr.length == 0) {
+      wx.showToast({
+        title: '至少选择一种兴趣！',
+      })
+      return
+    }
     saveUserInterestRequest(seleStr)
   },
   onReady: function () {
@@ -74,9 +80,13 @@ Page({
 })
 
 function saveUserInterestRequest(e) {
-  netWork.requestNetWork('/phone/interestInquirer/saveUserInterest', { "interest": e }, { "token": token, "uid": uid }, 'POST',
+  var token = wx.getStorageSync('token')
+  var uid = wx.getStorageSync('uid')
+  netWork.requestNetWork('http://116.62.7.43/d/phone/interestInquirer/saveUserInterest', { "interest": e }, { "token": token, "uid": uid }, 'POST',
     function success(res) {
-      console.log('保存用户兴趣爱好成功！！！！')
+      wx.showToast({
+        title: '保存兴趣成功！',
+      })
     },
     function fail(res) {
 
