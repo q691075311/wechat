@@ -11,6 +11,5 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "黑疯",
     "navigationBarTextStyle":"black"
-  },
-  "debug":true
+  }
 }

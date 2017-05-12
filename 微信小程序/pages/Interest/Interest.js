@@ -13,7 +13,7 @@ Page({
     var that = this
     var token = wx.getStorageSync('token')
     var uid = wx.getStorageSync('uid')
-    netWork.requestNetWork('http://116.62.7.43/d/phone/interestInquirer/list', {}, { "token": token, "uid": uid }, 'POST',
+    netWork.requestNetWork('/phone/interestInquirer/list', {}, { "token": token, "uid": uid }, 'POST',
       function success(res) {
         var listarr = res.data.attribute.list
         var index = new Array()
@@ -82,7 +82,7 @@ Page({
 function saveUserInterestRequest(e) {
   var token = wx.getStorageSync('token')
   var uid = wx.getStorageSync('uid')
-  netWork.requestNetWork('http://116.62.7.43/d/phone/interestInquirer/saveUserInterest', { "interest": e }, { "token": token, "uid": uid }, 'POST',
+  netWork.requestNetWork('/phone/interestInquirer/saveUserInterest', { "interest": e }, { "token": token, "uid": uid }, 'POST',
     function success(res) {
       wx.showToast({
         title: '保存兴趣成功！',

@@ -86,7 +86,7 @@ Page({
     }
     //登录请求
     var data = { "username": this.data.userphone, "password": this.data.userpsw }
-    netWork.requestNetWork('http://116.62.7.43/d/phone/login', data, { 'content-type': 'application/json' }, 'POST',
+    netWork.requestNetWork('/phone/login', data, { 'content-type': 'application/json' }, 'POST',
       function success(res) {
         console.log(res.data);
         wx.hideLoading();
@@ -109,7 +109,7 @@ Page({
         }
         // 获取个人信息请求
         var headInfo = { 'content-type': 'application/json', 'token': token, 'uid': uid }
-        netWork.requestNetWork('http://116.62.7.43/d/phone/user/detail', {}, headInfo, 'POST',
+        netWork.requestNetWork('/phone/user/detail', {}, headInfo, 'POST',
           function success(res) {
             wx.hideLoading()
             var headImage = res.data.attribute.item.headImage
@@ -158,7 +158,7 @@ Page({
       "regDevice": "ios"
     }
     console.log(regData)
-    netWork.requestNetWork('http://116.62.7.43/d/phone/register', regData, { 'content-type': 'application/json' }, 'POST',
+    netWork.requestNetWork('/phone/register', regData, { 'content-type': 'application/json' }, 'POST',
       function success(res) {
         that.setData({
           loginorreg: 'login',

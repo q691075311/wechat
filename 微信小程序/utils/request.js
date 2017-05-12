@@ -2,11 +2,16 @@ var baseURL = 'http://116.62.7.43/d'
 
 function requestNetWork(url, data, head, method, success, fail, complete) {
   console.log('请求开始!!!!!!')
-  console.log(url)
-  console.log(data)
-  console.log(head)
+  var requestURL = null
+  if (url.indexOf('http')==0){
+    console.log('包含http')
+    requestURL = url
+  }else{
+    requestURL = baseURL+url
+  }
+  console.log(requestURL)
   wx.request({
-    url: url,
+    url: requestURL,
     data: data,
     method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
     header: head,

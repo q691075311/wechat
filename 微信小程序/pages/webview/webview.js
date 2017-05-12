@@ -1,5 +1,4 @@
 // pages/webview/webview.js
-var WxParse = require('../../wxParse/wxParse.js')
 var netWork = require('../../utils/request.js')
 Page({
 
@@ -21,12 +20,7 @@ Page({
     netWork.requestNetWork('http://www.baidu.com/', {}, {}, 'GET',
       function success(res) {
         console.log('webview解析到的值！！！！！')
-        console.log(res.data)
-
-        var article = this.data.htmldata
-        // WxParse.wxParse(article, 'html', article, that, 5);
-        console.log('WxParse结束！！！！！！！')
-
+        // console.log(res.data)
         that.setData({
           htmldata:res.data,
         })
@@ -38,8 +32,6 @@ Page({
 
       },
     )
-
-    
     /**
     * WxParse.wxParse(bindName , type, data, target,imagePadding)
     * 1.bindName绑定的数据名(必填)

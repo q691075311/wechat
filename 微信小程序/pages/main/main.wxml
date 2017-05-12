@@ -1,8 +1,29 @@
 <!--pages/main/main.wxml-->
-<swiper class="swiper" indicator-dots="true" autoplay="true" duration="500" interval="2000" circular="true">
-  <block wx:for="{{arr}}" wx:for-item="item" wx:for-index="index">
-    <swiper-item class="weiper-item" data-link="{{item.promotionalWapLink}}" bindtap="imageclock">
-    <image class="swiper-image" src="http://116.62.7.43{{item.promotionalPicturePath}}"></image>
-    </swiper-item>
-  </block>
-</swiper>
+<view class="content" style="height:{{DHEIGTH}}px">
+  <swiper class="swiper" indicator-dots="true" autoplay="true" duration="500" interval="2000" circular="true">
+    <block wx:for="{{arr}}" wx:for-item="item" wx:for-index="index">
+      <swiper-item class="weiper-item" data-link="{{item.promotionalWapLink}}" bindtap="imageclock">
+        <image class="swiper-image" src="http://116.62.7.43{{item.promotionalPicturePath}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <scroll-view class="type" scroll-x="true" style="width:{{DWITH}}px">
+    <block wx:for="{{typeArr}}" wx:for-item="item" wx:for-index="index" wx:key="item">
+      <view class="itemtype" style="width:{{(DWITH-6)/6}}px">
+        <image class="scrollimage" src="http://116.62.7.43{{item.pictureAddress}}"></image>
+        <view class="scrolltext">{{item.typeName}}</view>
+        <view class="blockline" style="width:{{DWITH/6}}px"></view>
+      </view>
+
+      <view class="line"></view>
+    </block>
+  </scroll-view>
+
+  <view class="actblock">
+    <block wx:for="{{typeArr}}" wx:for-item="item" wx:for-index="index" wx:key="item">
+      <view class="actview">{{item}}</view>
+    </block>
+  </view>
+
+</view>
