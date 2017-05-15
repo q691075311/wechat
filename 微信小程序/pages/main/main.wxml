@@ -10,9 +10,9 @@
 
   <scroll-view class="type" scroll-x="true" style="width:{{DWITH}}px">
     <block wx:for="{{typeArr}}" wx:for-item="item" wx:for-index="index" wx:key="item">
-      <view class="itemtype" style="width:{{(DWITH-6)/6}}px">
-        <image class="scrollimage" src="http://116.62.7.43{{item.pictureAddress}}"></image>
-        <view class="scrolltext">{{item.typeName}}</view>
+      <view class="itemtype" style="width:{{(DWITH-6)/6}}px" data-index="{{index}}" bindtap="changetype">
+        <image class="scrollimage" src="{{item.pictureAddress}}"></image>
+        <view class="scrolltext" style="{{redColorIndex==index ? 'color:#cd302c':'color:#4a4a4a'}}">{{item.typeName}}</view>
         <view class="blockline" style="width:{{DWITH/6}}px"></view>
       </view>
 
@@ -21,8 +21,12 @@
   </scroll-view>
 
   <view class="actblock">
-    <block wx:for="{{typeArr}}" wx:for-item="item" wx:for-index="index" wx:key="item">
-      <view class="actview">{{item}}</view>
+    <block wx:for="{{actListArr}}" wx:for-item="item" wx:for-index="index" wx:key="item">
+      <view class="actview">
+        <image class="actlistimage" src="http://116.62.7.43{{item.promotionalPicturePath}}"></image>
+        <text class="acttext">{{item.productName}}</text>
+        <text class="acttime">{{item.activityStartDate+' - '+item.activityEndDate}}</text>
+      </view>
     </block>
   </view>
 

@@ -54,6 +54,7 @@
 .scrolltext {
   margin-top: 6px;
   font-size: 12px;
+  color: #4a4a4a;
 }
 
 .actblock {
@@ -65,5 +66,32 @@
   display: flex;
   flex-direction: column;
   margin: 10px;
-  background-color: chartreuse;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.actlistimage {
+  height: 160px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.acttext {
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 20px;
+  width: 95%;
+  font-family: PingFangSC-Medium;
+  font-size: 14px;
+  color: #4a4a4a;
+}
+
+.acttime {
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #969696;
+  margin-left: 10px;
+  margin-top: 0px;
+  height: 20px;
+  width: 95%;
 }
